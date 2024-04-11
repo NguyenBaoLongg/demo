@@ -1,0 +1,22 @@
+1. suggest_search
+2. header-with-search-section
+2. header-search-icon-wrap
+3. pFceVI(sửa lại bằng js)
+4. tạo slice chuyển động tự động
+5. Danh options để chọn các sản phẩm
+6. js các phẩm
+    tao 1 array luu tru cac ttin san pham
+    copy ra 1 mang khac
+    shuffle thanh phan trong array
+    trong object co thuoc tinh 
+    name
+    img
+    discount
+    category
+    saled
+    priceDefaul
+    priceSale
+
+7. làm login
+8. render danh muc
+9. Kiem tra lai phan login
