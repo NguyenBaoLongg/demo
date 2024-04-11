@@ -216,22 +216,23 @@ function renderMostSearch() {
   for (let i = 0; i < footerDirectoryItems.length; i++) {
     footerDirectoryHTML += `<div class="footer_director_list-item_wrapper">`;
     for (let j = 0; j < footerDirectoryItems[i].length; j++) {
+      var footerDirectoryItemLinks = footerDirectoryItems[i][j].items
+        .map((val) => {
+          return `
+        <div>
+        <a href="#">${val}</a>
+        </div>
+        <span>&nbsp; |&nbsp; </span>
+        `;
+        })
+        .join("");
       footerDirectoryHTML += `
     <div class="footer_director_list-item">
         <div class="header_footer_director">
             <a href="#" class="footer_direction_link">${footerDirectoryItems[i][j].header} </a>
         </div>
         <div class="footer_director_content">
-    `;
-      footerDirectoryItems[i][j].items.map((val) => {
-        footerDirectoryHTML += `
-        <div>
-        <a href="#">${val}</a>
-        </div>
-        <span>&nbsp; |&nbsp; </span>
-        `;
-      });
-      footerDirectoryHTML += `
+        ${footerDirectoryItemLinks}
         </div>
     </div>
     `;
