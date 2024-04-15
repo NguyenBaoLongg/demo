@@ -1,4 +1,12 @@
+//format price
+function formatNumber(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
+//swiper
+
 //suggest search
+
 const suggestSearch = document.querySelector(".suggest_search");
 const allSuggestSearchs = [
   "iphone 1k",
@@ -100,15 +108,15 @@ const allProductSaleLeft = [
     product: [
       {
         img: "/access/image/shopeelive/len.jpg",
-        sale: "₫5.988",
+        sale: 5988,
       },
       {
         img: "/access/image/shopeelive/charge.jpg",
-        sale: "₫9.000",
+        sale: 90000,
       },
       {
         img: "/access/image/shopeelive/thatlung.jpg",
-        sale: "₫4.800",
+        sale: 48000,
       },
     ],
   },
@@ -120,15 +128,15 @@ const allProductSaleRight = [
     product: [
       {
         img: "/access/image/shopeelive/vn-11134207-7qukw-lj2jr39xdfbm1c.jpg",
-        sale: "giảm đến 40%",
+        sale: 40,
       },
       {
         img: "/access/image/shopeelive/vn-11134207-7qukw-livh4fp1sp8yf7.jpg",
-        sale: "giảm đến 20%",
+        sale: 20,
       },
       {
         img: "/access/image/shopeelive/sg-11134201-22100-3w4yssuf06ivb2.jpg",
-        sale: "giảm đến 5%",
+        sale: 5,
       },
     ],
   },
@@ -149,7 +157,7 @@ function renderProductSaleLeft() {
             class="sale_liveprice"
             style="color: rgb(238, 78, 46)"
         >
-            ${val.sale}
+            ${formatNumber(val.sale)}
         </div>
         </div>
     `;
@@ -185,7 +193,7 @@ function renderProductSaleRight() {
               class="sale_liveprice"
               style="color: rgb(238, 78, 46)"
           >
-              ${val.sale}
+              Giảm đến ${val.sale}%
           </div>
           </div>
       `;
@@ -325,8 +333,238 @@ function renderDirectory() {
     .join("");
   directorySection.innerHTML = directoryHTML;
 }
+
+//Flash sale
+var flashSaleList = document.querySelector(".flashsell_list");
+const allProductsFlashSale = [
+  {
+    img: "https://down-vn.img.susercontent.com/file/sg-11134201-23010-4s99xpf6vemv08_tn",
+    price: 129000,
+    statusDescript: "đang bán chạy",
+    status: 6,
+  },
+  {
+    img: "https://down-vn.img.susercontent.com/file/805a1beaafdabea9a1cca68d751376fe_tn",
+    price: 1359000,
+    statusDescript: 9,
+    status: 90,
+  },
+  {
+    img: "https://down-vn.img.susercontent.com/file/vn-50009109-eefb01c19317106d4d3bcc4e497b86a5_tn",
+    price: "245000",
+    statusDescript: "đang bán chạy",
+    status: 6,
+  },
+  {
+    img: "https://down-vn.img.susercontent.com/file/793480c24f598832df25cfcb749656e4_tn",
+    price: 308000,
+    statusDescript: 8,
+    status: 80,
+  },
+  {
+    img: "https://down-vn.img.susercontent.com/file/37942ebc3688a75f5baa44abaa2e4780_tn",
+    price: 250750,
+    statusDescript: 12,
+    status: 30,
+  },
+  {
+    img: "https://down-vn.img.susercontent.com/file/a6bd3e205f29a007b85382cee64a6a33_tn",
+    price: 159000,
+    statusDescript: "đang bán chạy",
+    status: 20,
+  },
+];
+
+function renderFlashSale() {
+  var allProductsFlashSaleArray = allProductsFlashSale
+    .map((val) => {
+      return `
+    <li class="flashsell_list-item">
+    <div class="flashsell_product">
+        <div class="flashsell_image-wrap">
+          <div
+            class="flashsell_image"
+            style="
+              background-image: url('${val.img}');
+              background-repeat: no-repeat;
+              background-size: contain;
+            "
+          ></div>
+        </div>
+        <div class="flashsell_product-bottom">
+          <div
+            class="flashsell_product-bottom_child"
+          >
+            <div
+              class="flashsell_price"
+              style="text-decoration: none"
+            >
+              <div class="flashsell_price_child1">
+                <div class="flashsell_price_child2">
+                  <span>₫${formatNumber(val.price)}</span>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="flashsell_price_status-wrap"
+            >
+              <div
+                class="flashsell_price_status-amount"
+              >
+                <div
+                  class="flashsell_price_status-scrip"
+                  style="text-decoration: none"
+                >
+                  ${
+                    typeof val.statusDescript === "number"
+                      ? `Chỉ còn ${val.statusDescript}`
+                      : `${val.statusDescript}`
+                  }
+                </div>
+                <div
+                  class="flashsell_price_status"
+                  style="width: ${val.status}%; height: 16px"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </li>
+    `;
+    })
+    .join("");
+  flashSaleList.innerHTML = allProductsFlashSaleArray;
+}
+
+//section deal
+
+function rendeSectionDeal() {
+  const sectionDeal = document.querySelector(".section_deal");
+  const pictureDeal =
+    "https://cf.shopee.vn/file/sg-50009109-75effbabbb9736efc3851ae043840dd3";
+  sectionDeal.innerHTML = `
+  <div class="section_deal_wrap">
+  <img src="${pictureDeal}" alt='picture'>
+  </div>
+  `;
+}
+
+const allPictureSlider = [
+  "https://cf.shopee.vn/file/vn-50009109-48309bf86a26de2ac33a09d13ef9fead",
+  "https://cf.shopee.vn/file/vn-50009109-d994c4f1a4ac064180d80772112e8afa",
+  "https://cf.shopee.vn/file/vn-50009109-41e0fc4b6efa45721a8c296cc39e6769",
+  "https://cf.shopee.vn/file/vn-50009109-7660ed963d3fa5a922dcd088648d64ac",
+];
+
+function renderTopSearchProduct() {
+  const allProductTopSarch = [
+    {
+      img: "https://down-vn.img.susercontent.com/file/5ddbc585b7e9eaf10430c968f7a7d787",
+      amount: 126000,
+      nameProduct: "gập bẻ tập cơ tay",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/8e78019372e7c63a5c2f372d35532e56",
+      amount: 129000,
+      nameProduct: "balo thời trang",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/dc04a555685a9720d9da6655217a224f",
+      amount: 60000,
+      nameProduct: "bình giữ nhiệt",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/309e98d0c002c62b867a00bc639bdbae",
+      amount: 69000,
+      nameProduct: "bộ chăn ga gối cotton",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/461ccdf88d457131aaa7edef87613193",
+      amount: 63000,
+      nameProduct: "vòng đeo tay hợp kim",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/fad24d1b5caab802481090b9be5a5efa",
+      amount: 69000,
+      nameProduct: "ruột sổ còng",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/fad24d1b5caab802481090b9be5a5efa",
+      amount: 69000,
+      nameProduct: "ruột sổ còng",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/6d1416daa515aaf1a3c1b6c5fc47e07b",
+      amount: 173000,
+      nameProduct: "Ốp lưng Iphone",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/ea3c6a73cbd32bddb8323c14b837b4de",
+      amount: 103000,
+      nameProduct: "Bút mực Gel",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/af40edba655e36fd80f6b7da6e7dc41c",
+      amount: 119000,
+      nameProduct: "Áo thun",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/e3568f284358e6f5c46223036e54ef84",
+      amount: 166000,
+      nameProduct: "Bông Tẩy Trang 3 Lớp Cotton Pads",
+    },
+    {
+      img: "https://down-vn.img.susercontent.com/file/30a8c88309e8f1c95f0f32fd3e368bb5",
+      amount: 118000,
+      nameProduct: "Giấy Ăn Gấu Trúc Sipiao",
+    },
+  ];
+  const topSearcProductList = document.querySelector(".ts_content_list");
+  const productsTopSarch = allProductTopSarch
+    .map((val) => {
+      return `
+    <div class="ts_item_wrap swiper-slide">
+      <a href="#" class="ts_link">
+        <div class="ts_item">
+          <div class="logo_top"></div>
+          <div
+            class="ts_image_wrap"
+            style="
+              background-image: url('${val.img}');
+              background-size: contain;
+              background-repeat: no-repeat;
+            "
+          >
+            <div class="ts_image"></div>
+            <div class="ts_image_scrip">
+              bán ${
+                val.amount >= 1000 ? `${val.amount / 1000}k+` : `${val.amount}`
+              } /tháng
+            </div>
+          </div>
+        </div>
+        <div class="ts_nameproduct">${val.nameProduct}</div>
+      </a>
+    </div>
+    `;
+    })
+    .join("");
+  topSearcProductList.innerHTML = productsTopSarch;
+}
 renderSuggestSearch();
 renderBannerBottom();
 renderProductSaleLeft();
 renderProductSaleRight();
 renderDirectory();
+renderFlashSale();
+rendeSectionDeal();
+renderTopSearchProduct();
+
+const swiper = new Swiper(".swiper", {
+  loop: true,
+  pagination: {
+    el: ".swiper-pagination",
+  },
+});

@@ -4,6 +4,8 @@ const btnRegister = document.querySelector(".btn-register");
 const btnBackRegister = document.querySelector("#modal-register .back");
 const btnBackLogin = document.querySelector("#modal .back");
 const modal = document.getElementById("modal");
+const loginInNotify = document.querySelector(".subnav__notify-login");
+const registerInNotify = document.querySelector(".subnav__notify-signup");
 
 btnRegister.addEventListener("click", () => {
   render("1");
@@ -11,6 +13,14 @@ btnRegister.addEventListener("click", () => {
 
 btnLogin.addEventListener("click", () => {
   render("2");
+});
+
+loginInNotify.addEventListener("click", () => {
+  render("2");
+});
+
+registerInNotify.addEventListener("click", () => {
+  render("1");
 });
 
 function render(value) {

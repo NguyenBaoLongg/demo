@@ -1,14 +1,46 @@
 // slide show
 const images = [
   "./access/image/slider/slider1.jpg",
-  "./access/image/slider/slider2.jpg",
-  "./access/image/slider/slider3.jpg",
+  "https://cf.shopee.vn/file/vn-50009109-b50873b90e3fe86b43cb609337ffdc16_xxhdpi",
+  "https://cf.shopee.vn/file/vn-50009109-ce6f4ad7ccd1a196121a120e12d04584_xxhdpi",
+  "https://cf.shopee.vn/file/vn-50009109-b50873b90e3fe86b43cb609337ffdc16_xxhdpi",
 ];
+
+const listSlide = document.querySelector(".show-banner");
+function renderSlideMain() {
+  listSlide.innerHTML = images
+    .map((val) => {
+      return `
+      <img alt='Picture' class="img_of_slider" src="${val}"/>
+    `;
+    })
+    .join("");
+}
+function swiperSlide() {
+  renderSlideMain();
+  const imgs = document.querySelectorAll(".show-banner img");
+  const length = imgs.length;
+  let currentSlideIndex = 0;
+
+  setInterval(() => {
+    if (currentSlideIndex == length - 1) {
+      currentSlideIndex = 0;
+      width = imgs[0].offsetWidth;
+      listSlide.style.transform = `translateX(0px)`;
+    } else {
+      currentSlideIndex++;
+      let width = imgs[0].offsetWidth;
+      listSlide.style.transform = `translateX(${width * -currentSlideIndex}px)`;
+    }
+  }, 4000);
+}
 
 let index = 0;
 let transitionDelay = 2000;
 const sildeContainer = document.querySelector(".img_first");
 const slides = document.querySelectorAll(".img_of_slider");
+
+/*
 
 slides.forEach((slide) => {
   slide.style.transition = `all ${transitionDelay / 1000}s linear`;
@@ -24,8 +56,9 @@ function showSlide(slideNumber) {
   });
   index = (index + 1) % images.length;
 }
+*/
 
-setInterval(() => showSlide(index), transitionDelay);
+// setInterval(() => showSlide(index), transitionDelay);
 
 //show procduct
 
@@ -39,7 +72,7 @@ const allProducts = [
     discout: 2,
     decrease: true,
     timeDiscout: " ₫ 63.000 lúc 00:00",
-    price: 199,
+    price: 199000,
     soldProduct: 12000,
   },
   {
@@ -51,7 +84,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: " Flash Sale",
-    price: 22,
+    price: 22000,
     soldProduct: 101000,
   },
   {
@@ -62,7 +95,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: " Flash Sale",
-    price: 32,
+    price: 32000,
     soldProduct: 9400,
   },
   {
@@ -73,7 +106,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 79,
+    price: 79000,
     soldProduct: 369,
   },
   {
@@ -84,7 +117,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 54,
+    price: 54000,
     soldProduct: 10900,
   },
   {
@@ -96,7 +129,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 60,
+    price: 60000,
     soldProduct: 124000,
   },
   {
@@ -107,7 +140,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "Flash Sale",
-    price: 49,
+    price: 49000,
     soldProduct: 122000,
   },
   {
@@ -119,7 +152,7 @@ const allProducts = [
     discout: 5,
     decrease: true,
     timeDiscout: "Flash Sale",
-    price: 55,
+    price: 55000,
     soldProduct: 18000,
   },
   {
@@ -131,7 +164,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 35,
+    price: 35000,
     soldProduct: 36000,
   },
   {
@@ -142,7 +175,7 @@ const allProducts = [
     discout: 5,
     decrease: true,
     timeDiscout: "",
-    price: 79,
+    price: 79000,
     soldProduct: 10500,
   },
   {
@@ -153,7 +186,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "₫ 54.000 lúc 00:00",
-    price: 199,
+    price: 199000,
     soldProduct: 12000,
   },
   {
@@ -165,7 +198,7 @@ const allProducts = [
     discout: 2,
     decrease: true,
     timeDiscout: "₫ 63.000 lúc 00:00",
-    price: 199,
+    price: 199000,
     soldProduct: 12000,
   },
   {
@@ -177,7 +210,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 1,
+    price: 1000,
     soldProduct: 40000,
   },
   {
@@ -188,7 +221,7 @@ const allProducts = [
     discout: 10,
     decrease: true,
     timeDiscout: "₫ 66.000 lúc 00:00",
-    price: 66,
+    price: 66000,
     soldProduct: 12000,
   },
   {
@@ -199,7 +232,7 @@ const allProducts = [
     discout: 10,
     decrease: true,
     timeDiscout: "₫ 66.000 lúc 00:00",
-    price: 1,
+    price: 1000,
     soldProduct: 12000,
   },
   {
@@ -210,7 +243,7 @@ const allProducts = [
     discout: 10,
     decrease: true,
     timeDiscout: "Flash Sale",
-    price: 1,
+    price: 1000,
     soldProduct: 46000,
   },
   {
@@ -221,7 +254,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "₫ 72.000 lúc 00:00",
-    price: 1,
+    price: 1000,
     soldProduct: 11000,
   },
   {
@@ -233,7 +266,7 @@ const allProducts = [
     discout: 0,
     decrease: true,
     timeDiscout: "",
-    price: 50,
+    price: 50000,
     soldProduct: 388,
   },
 ];
@@ -301,7 +334,7 @@ const renderProducts = (array) => {
                 </div>
                 <div class="shopee_stardust_sale_wrapper">
                   <div class="shopee_stardust_price">
-                    ₫ ${val.price}.000
+                    ₫ ${formatNumber(val.price)}
                   </div>
                   <div class="shopee_stardust_sold">
                     Đã bán ${
@@ -336,4 +369,5 @@ const renderProducts = (array) => {
   `;
 };
 
+swiperSlide();
 renderProducts(allProducts);

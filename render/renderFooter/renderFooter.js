@@ -340,22 +340,23 @@ renderFooterFeaturedBrand();
 function renderFooterFeaturedBrand() {
   var footerFeaturedBrandHTML = "";
   for (let i = 0; i < topFooterBrandContent.length; i++) {
-    footerFeaturedBrandHTML += `
-        <h2 class="footer_heading">${topFooterBrandContent[i].header}</h2>
-        <p class="footer_content">
-        <span class="footer_list_brand">
-        `;
-    topFooterBrandContent[i].brands.map((val) => {
-      footerFeaturedBrandHTML += `
+    var topFooterBrand = topFooterBrandContent[i].brands
+      .map((val) => {
+        footerFeaturedBrandHTML += `
         <u class="footer_brand"
         ><a href="#"><span>${val}</span></a></u>
         <span style="color: #000000">&nbsp; |&nbsp; </span>
         `;
-    });
+      })
+      .join("");
     footerFeaturedBrandHTML += `
+        <h2 class="footer_heading">${topFooterBrandContent[i].header}</h2>
+        <p class="footer_content">
+        <span class="footer_list_brand">
+      ${topFooterBrand}
         </span>
-    </p>
-    <br />
+        </p>
+        <br />
     `;
   }
   topFooterBrand.innerHTML = footerFeaturedBrandHTML;
