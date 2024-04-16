@@ -1,66 +1,211 @@
-// slide show
-const images = [
+// Banner Show
+var imagesOfBanner = [
   "./access/image/slider/slider1.jpg",
   "https://cf.shopee.vn/file/vn-50009109-b50873b90e3fe86b43cb609337ffdc16_xxhdpi",
   "https://cf.shopee.vn/file/vn-50009109-ce6f4ad7ccd1a196121a120e12d04584_xxhdpi",
   "https://cf.shopee.vn/file/vn-50009109-b50873b90e3fe86b43cb609337ffdc16_xxhdpi",
+  "https://cf.shopee.vn/file/vn-50009109-99b4ae712c5d920ec6151cc9cd4467b3_xxhdpi",
+  "https://cf.shopee.vn/file/vn-50009109-2bb6d8c4d70a75ec5f4945356e9c4b44_xxhdpi",
 ];
 
-const listSlide = document.querySelector(".show-banner");
-function renderSlideMain() {
-  listSlide.innerHTML = images
-    .map((val) => {
+const handleSectionDots = (parentElement, images) => {
+  const sectionDots = document.querySelector(`${parentElement} .section-dots`);
+  let cnt = 0;
+  const dots = images
+    .map(() => {
       return `
-      <img alt='Picture' class="img_of_slider" src="${val}"/>
+    <div class="section-dot dot-${cnt++}"></div>
     `;
     })
     .join("");
+  if (sectionDots) {
+    sectionDots.innerHTML = dots;
+    const activeDot = document.querySelector(`${parentElement}  .dot-0`);
+    activeDot.classList.add("active");
+  }
+};
+
+function renderSlideMain() {
+  var showBanner = document.querySelector(`.show-slide`);
+  const imgOfSlide = imagesOfBanner
+    .map((val) => {
+      return `
+      <li class="show_banner-list-item " >
+          <a href="">
+            <div class="wrap-item">
+                <img src="${val}" alt="" class="img_of_slider">                                                  
+            </div>
+          </a>
+        </li>
+    `;
+    })
+    .join("");
+  if (showBanner) {
+    showBanner.innerHTML = imgOfSlide;
+  }
 }
-function swiperSlide() {
+
+function swiperSlideOfBanner() {
   renderSlideMain();
-  const imgs = document.querySelectorAll(".show-banner img");
+  handleSectionDots(".start-show_banner", imagesOfBanner);
+  const showBanner = document.querySelector(`.show-slide`);
+  const btnLeft = document.querySelector(`.icon-more_left`);
+  const btnRight = document.querySelector(`.icon-more_right`);
+  const imgs = document.querySelectorAll(`.show-slide img`);
   const length = imgs.length;
   let currentSlideIndex = 0;
 
-  setInterval(() => {
+  const handleChangeSlide = () => {
     if (currentSlideIndex == length - 1) {
       currentSlideIndex = 0;
       width = imgs[0].offsetWidth;
-      listSlide.style.transform = `translateX(0px)`;
+      showBanner.style.transform = `translateX(0px)`;
+      document.querySelector(`.active`).classList.remove("active");
+      document
+        .querySelector(`.dot-${currentSlideIndex}`)
+        .classList.add("active");
     } else {
       currentSlideIndex++;
       let width = imgs[0].offsetWidth;
-      listSlide.style.transform = `translateX(${width * -currentSlideIndex}px)`;
+      showBanner.style.transform = `translateX(${
+        width * -currentSlideIndex
+      }px)`;
+      document.querySelector(`.active`).classList.remove("active");
+      document
+        .querySelector(`.dot-${currentSlideIndex}`)
+        .classList.add("active");
     }
-  }, 4000);
-}
+  };
 
-let index = 0;
-let transitionDelay = 2000;
-const sildeContainer = document.querySelector(".img_first");
-const slides = document.querySelectorAll(".img_of_slider");
-
-/*
-
-slides.forEach((slide) => {
-  slide.style.transition = `all ${transitionDelay / 1000}s linear`;
-});
-
-showSlide(index);
-
-function showSlide(slideNumber) {
-  const imageSource = images[slideNumber];
-  slides.forEach((slide, i) => {
-    slide.src = imageSource;
-    slide.style.display = i == slideNumber ? "block" : "none";
+  btnRight.addEventListener("click", () => {
+    clearInterval(handleEventChangeSlide);
+    handleChangeSlide();
+    handleEventChangeSlide = setInterval(handleChangeSlide, 4000);
   });
-  index = (index + 1) % images.length;
-}
-*/
 
-// setInterval(() => showSlide(index), transitionDelay);
+  btnLeft.addEventListener("click", () => {
+    clearInterval(handleEventChangeSlide);
+    if (currentSlideIndex == 0) {
+      currentSlideIndex = length - 1;
+      width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(${
+        width * -1 * currentSlideIndex
+      }px)`;
+    } else {
+      currentSlideIndex--;
+      let width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(${
+        width * -currentSlideIndex
+      }px)`;
+    }
+    handleEventChangeSlide = setInterval(handleChangeSlide, 10000);
+  });
+
+  let handleEventChangeSlide = setInterval(handleChangeSlide, 4000);
+}
+
+swiperSlideOfBanner();
+
+//show banner shoppe mall
+
+const imagesOfShopeeMall = [
+  "https://cf.shopee.vn/file/vn-50009109-63d358b63ab3e8276ceb63a90338ae53",
+  "https://cf.shopee.vn/file/vn-50009109-44c3b3ddf43f4db7fd65536f5435682c",
+  "https://cf.shopee.vn/file/vn-50009109-aadb2df8bbe5ce4540fe3309ff16148d",
+  "https://cf.shopee.vn/file/vn-50009109-05aea49caef33affda793723750a5985",
+  "https://cf.shopee.vn/file/vn-50009109-f8c6b54e1d59068994d4c0009cebced1",
+];
+
+const bannerShoppeMall = document.querySelector(".home_page_list-item");
+function renderOfHomePage() {
+  bannerShoppeMall.innerHTML = imagesOfShopeeMall
+    .map((val) => {
+      return `
+      <li class="image_of_banner">
+        <div class="item-inner_banner">
+            <div>
+                <a href="">
+                    <img src="${val}" alt="" class="image-banner">
+                </a>
+            </div>
+        </div>
+      </li>
+      `;
+    })
+    .join("");
+}
+
+function renderSlideOfShoppeMall() {
+  renderOfHomePage();
+  handleSectionDots(".hmall_content", imagesOfShopeeMall);
+
+  const showBanner = document.querySelector(`.home_page_list-item`);
+  const btnLeft = document.querySelector(`.hmall_content .icon-more_left`);
+  const btnRight = document.querySelector(`.hmall_content .icon-more_right`);
+  const imgs = document.querySelectorAll(`.image-banner`);
+  const length = imgs.length;
+  let currentSlideIndex = 0;
+
+  const handleChangeSlide = () => {
+    if (currentSlideIndex == length - 1) {
+      currentSlideIndex = 0;
+      width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(0px)`;
+      document
+        .querySelector(`.hmall_content .active`)
+        .classList.remove("active");
+      document
+        .querySelector(`.hmall_content .dot-${currentSlideIndex}`)
+        .classList.add("active");
+    } else {
+      currentSlideIndex++;
+      let width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(${
+        width * -currentSlideIndex
+      }px)`;
+      document
+        .querySelector(`.hmall_content .active`)
+        .classList.remove("active");
+      document
+        .querySelector(`.hmall_content .dot-${currentSlideIndex}`)
+        .classList.add("active");
+    }
+  };
+
+  btnRight.addEventListener("click", () => {
+    clearInterval(handleEventChangeSlide);
+    handleChangeSlide();
+    handleEventChangeSlide = setInterval(handleChangeSlide, 4000);
+  });
+
+  btnLeft.addEventListener("click", () => {
+    clearInterval(handleEventChangeSlide);
+    if (currentSlideIndex == 0) {
+      currentSlideIndex = length - 1;
+      width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(${
+        width * -1 * currentSlideIndex
+      }px)`;
+    } else {
+      currentSlideIndex--;
+      let width = imgs[0].offsetWidth;
+      showBanner.style.transform = `translateX(${
+        width * -currentSlideIndex
+      }px)`;
+    }
+    handleEventChangeSlide = setInterval(handleChangeSlide, 10000);
+  });
+
+  let handleEventChangeSlide = setInterval(handleChangeSlide, 4000);
+}
+
+renderSlideOfShoppeMall();
 
 //show procduct
+
+function formatNumber(number) {
+  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
 
 const allProducts = [
   {
@@ -369,5 +514,4 @@ const renderProducts = (array) => {
   `;
 };
 
-swiperSlide();
 renderProducts(allProducts);
