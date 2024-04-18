@@ -315,7 +315,7 @@ body {
   padding: 1rem 0 0.625rem;
 }
 
-.nav-search li {
+.nav-search > li {
   display: flex;
   color: white;
 }
@@ -395,6 +395,8 @@ body {
   text-align: center;
 }
 
+/* cart icon */
+
 #cart_icon {
   margin-right: 30px;
   text-align: center;
@@ -457,7 +459,7 @@ body {
 
 .size-modal {
   width: 390px;
-  height: 240px;
+  min-height: 290px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.09);
 }
@@ -465,6 +467,7 @@ body {
 .modal-cart {
   height: inherit;
 }
+
 .desc-modal {
   display: flex;
   flex-direction: column;
@@ -482,6 +485,89 @@ body {
   font-size: 14px;
   opacity: 0.7;
 }
+
+.list-products-in-cart {
+  width: 100%;
+  list-style: none;
+}
+
+.product-in-cart {
+  padding: 5px;
+}
+
+.product-in-cart:hover {
+  background-color: var(--border-color);
+}
+
+.text-product_more {
+  padding: 8px 2px 5px 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  text-transform: capitalize;
+  color: #555;
+}
+
+.item-in-cart {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px;
+  width: 100%;
+}
+
+.item-in-cart_img {
+  width: 90px;
+  height: 50px;
+  padding-left: 8px;
+  padding-right: 5px;
+}
+
+.item-in-cart_name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 20px auto 10px;
+}
+
+.product-count {
+  margin-right: 15px;
+}
+
+.item-in-cart_price {
+  margin-right: 20px;
+  color: var(--main-color);
+}
+
+.show-in-cart {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: auto 0;
+  height: 50px;
+  position: absolute;
+  bottom: 0px;
+}
+
+.amount-in-cart p {
+  text-align: center;
+  height: 100%;
+  transform: translateY(35%);
+  text-transform: capitalize;
+}
+.amount-in-cart {
+  width: 50%;
+}
+
+.btn-in-cart {
+  background-color: var(--main-color);
+  border: none;
+  color: var(--white-color);
+  margin: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+/* suggest search */
 
 .suggest_search-wrap {
   margin-top: 3px;
@@ -503,7 +589,6 @@ body {
   line-height: 1.5rem;
   /* margin-left: -14px; */
 }
-
 .suggest_search a {
   text-decoration: none;
   font-size: 12px;
@@ -980,7 +1065,9 @@ body {
   text-transform: capitalize;
 }
 
-/* flash sell */
+/* FLASH SALE------------------------------
+ * flash sale header
+ ------------------------------------------*/
 
 .pcmall_flashsell {
   min-height: 20rem;
@@ -997,11 +1084,12 @@ body {
   justify-content: space-between;
   background-color: var(--white-color);
 }
+
 .flashsell_image {
   height: 100%;
 }
 
-flashsell_header-title {
+.flashsell_header-title {
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.54);
   font-weight: 500;
@@ -1018,13 +1106,103 @@ flashsell_header-title {
   height: 30px;
   display: inline-block;
   line-height: 30px;
+  transform: translateY(15%);
 }
+
 .flashsell_link {
   font-size: 1rem;
   text-transform: capitalize;
   text-decoration: none;
   color: var(--main-color);
 }
+
+/* FLASH SALE------------------------------
+ * flash sale count down time
+ ------------------------------------------*/
+
+.count-down-time {
+  align-items: center;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  color: #000;
+  cursor: default;
+  display: flex;
+  transform: scale(0.84);
+}
+
+.count-down-time__number {
+  background: currentColor;
+  border-radius: 2px;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  display: flex;
+  font-size: 19px;
+  height: 17px;
+  justify-content: space-around;
+  line-height: 20px;
+  margin-bottom: 4px;
+  min-width: 20px;
+  overflow: hidden;
+  padding: 1px 3px;
+  text-align: center;
+}
+
+.count-down-time__number-item {
+  display: inline-block;
+  /* overflow: hidden; */
+  width: 9px;
+  color: var(--white-color);
+}
+
+.count-down-tume__number-item svg {
+  height: 13px;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 17px;
+  fill: #fff;
+  stroke: #fff;
+  overflow: visible;
+  font-size: 19px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.count-down-time__colon {
+  background-position-y: 3px;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 400;
+  height: 17px;
+  margin: 0 2px;
+  text-align: center;
+  width: 3px;
+}
+
+.colon-dot_wrapper {
+  height: 50%;
+  position: relative;
+  width: 100%;
+}
+
+.colon-dot {
+  display: flex;
+  background: currentColor;
+  border-radius: 100%;
+  height: 3px;
+  left: 0;
+  position: absolute;
+  top: 10%;
+  width: 3px;
+}
+
+/* FLASH SALE------------------------------
+ * flash sale content
+ ------------------------------------------*/
+
 .flashsell_content {
   background-color: var(--white-color);
   padding-top: 0;
@@ -1067,9 +1245,11 @@ flashsell_header-title {
 .flashsell_image-wrap {
   height: 10.625rem;
 }
+
 .flashsell_image {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .flashsell_product-bottom {
@@ -1817,7 +1997,7 @@ flashsell_header-title {
 
 /* shopee card hover */
 
-.shopee_card_hover_bottom {
+.add-to-cart-btn {
   opacity: 0;
   position: absolute;
   left: -0.0625rem;
@@ -1832,11 +2012,12 @@ flashsell_header-title {
   border-bottom-left-radius: 0.125rem;
   border-bottom-right-radius: 0.125rem;
   z-index: 3;
+  cursor: pointer;
 }
 
-/* .stardust_product_wrap:hover .shopee_card_hover_bottom {
+.stardust_product_wrap:hover .add-to-cart-btn {
   opacity: 1;
-} */
+}
 
 .stardust_product_wrap:hover {
   background-color: #ee4d2d;

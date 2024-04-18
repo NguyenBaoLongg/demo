@@ -106,6 +106,41 @@ function swiperSlideOfBanner() {
 
 swiperSlideOfBanner();
 
+// count down time
+const countDownNumber = document.querySelectorAll(
+  ".count-down-time__number-item"
+);
+
+formatTime = (num) => {
+  return num <= 9 ? "0" + num : num;
+};
+
+const now = new Date().getTime();
+const maxTime = now + 2 * 60 * 60 * 1000;
+let check = setInterval(() => {
+  let currentTime = new Date().getTime();
+  let distance = maxTime - currentTime;
+  if (distance <= 0) {
+    clearInterval(check);
+    countDownNumber.forEach((num) => {
+      num.textContent = 0;
+    });
+    return;
+  }
+  let hour = Math.floor((distance % (24 * 60 * 60 * 1000)) / (60 * 60 * 1000));
+  let minute = Math.floor((distance % (60 * 60 * 1000)) / (60 * 1000));
+  let second = Math.floor((distance % (60 * 1000)) / 1000);
+
+  let formatHour = formatTime(hour);
+  let formatMinute = formatTime(minute);
+  let formatSecond = formatTime(second);
+
+  let timeArray = (formatHour + formatMinute + formatSecond).split("");
+  for (let i = 0; i < countDownNumber.length; i++) {
+    countDownNumber[i].textContent = timeArray[i];
+  }
+}, 1000);
+
 //show banner shopee mall
 
 const imagesOfShopeeMall = [
@@ -335,6 +370,7 @@ function formatNumber(number) {
 
 const allProducts = [
   {
+    id: 1,
     src: "https://down-vn.img.susercontent.com/file/e66cc386528d8c5119b59cd20ccacc22_tn",
     percent: 68,
     favourite: true,
@@ -347,6 +383,7 @@ const allProducts = [
     soldProduct: 12000,
   },
   {
+    id: 2,
     src: "https://down-vn.img.susercontent.com/file/202cda63239ad682d5a79c9ad74abcc0_tn",
     percent: 52,
     favourite: false,
@@ -359,6 +396,7 @@ const allProducts = [
     soldProduct: 101000,
   },
   {
+    id: 3,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lh004pkew25v98_tn",
     percent: 52,
     favourite: true,
@@ -370,6 +408,7 @@ const allProducts = [
     soldProduct: 9400,
   },
   {
+    id: 4,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lgyz7g6edhpv4c_tn",
     percent: 34,
     favourite: true,
@@ -381,6 +420,7 @@ const allProducts = [
     soldProduct: 369,
   },
   {
+    id: 5,
     src: "https://down-vn.img.susercontent.com/file/sg-11134201-7qvdo-lj5gj9fz74qp93_tn",
     percent: 50,
     favourite: true,
@@ -392,6 +432,7 @@ const allProducts = [
     soldProduct: 10900,
   },
   {
+    id: 6,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lllsiotx9dfz92_tn",
     percent: 21,
     favourite: true,
@@ -404,6 +445,7 @@ const allProducts = [
     soldProduct: 124000,
   },
   {
+    id: 7,
     src: "https://down-vn.img.susercontent.com/file/10d37f385351096a02074fa8ca92b1b8_tn",
     percent: 21,
     favourite: true,
@@ -415,6 +457,7 @@ const allProducts = [
     soldProduct: 122000,
   },
   {
+    id: 8,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lj0g67ofo98y5e_tn",
     percent: 50,
     favourite: true,
@@ -427,6 +470,7 @@ const allProducts = [
     soldProduct: 18000,
   },
   {
+    id: 9,
     src: "https://down-vn.img.susercontent.com/file/vn-11134201-7qukw-lgyxk3oevsj6e5_tn",
     percent: 50,
     favourite: true,
@@ -439,6 +483,7 @@ const allProducts = [
     soldProduct: 36000,
   },
   {
+    id: 10,
     src: "https://down-vn.img.susercontent.com/file/7065b387e7c7f5295fa8aa97a1443638_tn",
     percent: 43,
     favourite: true,
@@ -450,6 +495,7 @@ const allProducts = [
     soldProduct: 10500,
   },
   {
+    id: 11,
     src: "https://down-vn.img.susercontent.com/file/9cc97ad195965d64de53f495087b50a8_tn",
     percent: 28,
     favourite: false,
@@ -461,6 +507,7 @@ const allProducts = [
     soldProduct: 12000,
   },
   {
+    id: 12,
     src: "https://down-vn.img.susercontent.com/file/sg-11134201-23020-247o89wwohnve3_tn",
     percent: 30,
     favourite: false,
@@ -473,6 +520,7 @@ const allProducts = [
     soldProduct: 12000,
   },
   {
+    id: 13,
     src: "https://down-vn.img.susercontent.com/file/59e1ed69165064ddcb93c060a6840adc_tn",
     percent: 50,
     favourite: true,
@@ -485,6 +533,7 @@ const allProducts = [
     soldProduct: 40000,
   },
   {
+    id: 14,
     src: "https://down-vn.img.susercontent.com/file/34969d7b8a92bcb5b6f6010669e5ca28_tn",
     percent: 56,
     favourite: true,
@@ -496,6 +545,7 @@ const allProducts = [
     soldProduct: 12000,
   },
   {
+    id: 15,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lld2fkxcmxmed7_tn",
     percent: 0,
     favourite: true,
@@ -507,6 +557,7 @@ const allProducts = [
     soldProduct: 12000,
   },
   {
+    id: 16,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7qukw-lk0i2li6i3zo90_tn",
     percent: 68,
     favourite: true,
@@ -518,6 +569,7 @@ const allProducts = [
     soldProduct: 46000,
   },
   {
+    id: 17,
     src: "https://down-vn.img.susercontent.com/file/sg-11134201-22100-uqpp5h6xreiv8a_tn",
     percent: 58,
     favourite: true,
@@ -529,6 +581,7 @@ const allProducts = [
     soldProduct: 11000,
   },
   {
+    id: 18,
     src: "https://down-vn.img.susercontent.com/file/vn-11134207-7r98o-lkoom6ea5fv42f_tn",
     percent: 66,
     favourite: true,
@@ -549,10 +602,11 @@ const renderProducts = (array) => {
   const productsHTML = array
     .map((val) => {
       return `
-      <div class="stardust_tabs_product">
+      <div class="stardust_tabs_product id="${val.id}"">
         <a href="#">
           <div class="stardust_product_wrap">
             <div class="stardust_product">
+            <a href="#">
               <div class="pdt_img">
                 <img
                   src="${val.src}"
@@ -616,10 +670,10 @@ const renderProducts = (array) => {
                   </div>
                 </div>
               </div>
-
-              <div class="shopee_card_hover_bottom">
-                Tìm kiếm sản phẩm tương tự
-              </div>
+            </a>        
+              <buttom id="${val.id}" class="add-to-cart-btn">
+                Thêm vào giỏ hàng
+              </buttom>
             </div>
           </div>
         </a>
@@ -641,3 +695,66 @@ const renderProducts = (array) => {
 };
 
 renderProducts(allProducts);
+
+const productsContainer = document.querySelector(".list-products-in-cart");
+class ShoppingCart {
+  constructor() {
+    this.items = [];
+    this.cnt = 0;
+  }
+  addItem(id, products) {
+    const product = products.find((item) => item.id === id);
+    const { src, title, price } = product;
+    this.items.push(product);
+    const totalCountPerProduct = {};
+    this.items.forEach((dessert) => {
+      totalCountPerProduct[dessert.id] = (totalCountPerProduct[id] || 0) + 1;
+    });
+    if (totalCountPerProduct[id] === 1) {
+      this.cnt++;
+    }
+    const currentProductCount = totalCountPerProduct[product.id];
+    const currentProductCountSpan = document.querySelector(
+      `.product-count-for-id${id}`
+    );
+    if (this.cnt <= 3) {
+      currentProductCount > 1
+        ? (currentProductCountSpan.textContent = currentProductCount)
+        : (productsContainer.innerHTML += `
+        <li class="product-in-cart">
+          <div class="item-in-cart">
+            <div
+              class="item-in-cart_img"
+              style="
+                background-image: url('${src}');
+                background-size: 100%;
+                background-repeat: no-repeat;
+              "
+            ></div>
+            <div class="item-in-cart_name">
+              ${title}
+            </div>
+            <div class="product-count-for-id${id} product-count">
+            </div>
+            <div class="item-in-cart_price">${formatNumber(price)}</div>
+          </div>
+        </li>
+        `);
+    }
+  }
+
+  getCountProduct() {
+    return this.items.length;
+  }
+}
+
+const amountProduct = document.querySelector(".amount-in-cart p");
+amountProduct.textContent = "0 Thêm vào giỏ hàng";
+const cart = new ShoppingCart();
+const addToCartBtns = document.getElementsByClassName("add-to-cart-btn");
+[...addToCartBtns].forEach((btn) => {
+  btn.addEventListener("click", (event) => {
+    cart.addItem(Number(event.target.id), allProducts);
+    amountProduct.textContent = `${cart.getCountProduct()} Thêm vào giỏ hàng`;
+  });
+});
